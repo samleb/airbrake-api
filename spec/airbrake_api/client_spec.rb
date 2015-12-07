@@ -153,8 +153,8 @@ describe AirbrakeAPI::Client do
         expect(errors.size).to eq(2)
       end
 
-      it "should use project_id for error path" do
-        expect(@client).to receive(:request).with(:get, "/projects/123/groups.xml", {}).and_return(double(:group => 111))
+      it "should pass project_id in query string for error path" do
+        expect(@client).to receive(:request).with(:get, "/groups.xml", { :project_id => 123 }).and_return(double(:group => 111))
         @client.errors(:project_id => 123)
       end
     end

@@ -76,9 +76,7 @@ module AirbrakeAPI
     end
 
     def errors(options = {})
-      options = options.dup
-      project_id = options.delete(:project_id)
-      results = request(:get, errors_path(:project_id => project_id), options)
+      results = request(:get, errors_path, options)
       results.group || results.groups
     end
 
